@@ -16,3 +16,17 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+//USERS
+$router->get('calc', 'UserController@calc');
+
+$router->post('add', 'UserController@add');
+
+$router->get('read', 'UserController@read');
+
+$router->post('update', 'UserController@update');
+
+//PRODUCTS
+$router->get('product/list', 'ProductController@list');
+
+$router->post('product/add', 'ProductController@add');
