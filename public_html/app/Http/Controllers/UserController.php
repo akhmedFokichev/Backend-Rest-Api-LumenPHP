@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Flight;
 use Illuminate\Http\Response;
 
 class UserController extends Controller
@@ -18,32 +18,35 @@ class UserController extends Controller
         //
     }
 
-    public function list(Request $request)
+   public function calc(Request $request)
     {
-        $list = User::all();
-        return response()->json($list);
+       $a = $request->input('a');
+       $b = $request->input('b');
+
+       $c = $a + $b;
+
+        return Response('test'.$c , 200, []);
     }
+    
 
+    public function add(Request $request): Response{
 
-    public function add(Request $request)
-    {
-        $name = $request->input('name');
+        $a = $request->input('name');
 
-        $user = new User();
-        $user->name = $name;
-        $user->save();
+        $fligth = new Flight();
+        $fligth->name = $a;
+        $fligth->airline = "test";
+        $fligth->save();
 
         return new Response("ok", 200);
     }
 
 
-    public function read(Request $request)
-    {
+    public function read(Request $request) {
         return response()->json(Flight::all());
     }
 
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
         $id = $request->input('id');
         $name = $request->input('name');
 
@@ -56,8 +59,9 @@ class UserController extends Controller
         $fligth->name = $name;
         $fligth->save();
 
-        return response()->json($fligth);
+        return response()->json($fligth);    
     }
-
+        
     //
 }
+?>

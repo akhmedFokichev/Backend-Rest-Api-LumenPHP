@@ -18,15 +18,17 @@ class ProductController extends Controller
         //
     }
 
-    public function list(Request $request)
+   public function list(Request $request)
     {
         $list = Product::all();
-        return response()->json($list);
+
+        return response()->json($list); 
     }
+    
 
-
-    public function add(Request $request)
+    public function add(Request $request) 
     {
+
         $name = $request->input('name');
         $vendor_code = $request->input('vendor_code');
         $catalog_code = $request->input('catalog_code');
@@ -35,9 +37,12 @@ class ProductController extends Controller
         $product->name = $name;
         $product->vendor_code = $vendor_code ?? "";
         $product->catalog_code = $catalog_code;
+        
         $product->save();
 
-        return response()->json($product);
+        return response()->json($product);  
+
+        // return new Response("ok", 200);
     }
 
 
@@ -60,6 +65,7 @@ class ProductController extends Controller
 
     //     return response()->json($fligth);    
     // }
-
+        
     //
 }
+?>
